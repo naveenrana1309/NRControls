@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'NRControls_Example' do
+  pod 'NRControls', :path => '../'
+
+  target 'NRControls_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
