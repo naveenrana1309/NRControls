@@ -1,0 +1,6 @@
+framework module Pods_NRControls_Tests {
+  umbrella header "Pods-NRControls_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

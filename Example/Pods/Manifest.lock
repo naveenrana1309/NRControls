@@ -1,0 +1,16 @@
+PODS:
+  - NRControls (0.1.0)
+
+DEPENDENCIES:
+  - NRControls (from `../`)
+
+EXTERNAL SOURCES:
+  NRControls:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NRControls: 9a1edf4fdb02f199cb06d6114ccb0e035aeb13e7
+
+PODFILE CHECKSUM: df39fad4c2d2d736431c15a03709171eb1b64e57
+
+COCOAPODS: 1.1.0.beta.1
