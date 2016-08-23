@@ -27,7 +27,7 @@ NRControls: This class is used for using a common controls like alert, action sh
 DESC
 
 s.homepage         = 'https://github.com/naveenrana1309/NRControls'
-s.screenshots     = 'https://github.com/naveenrana1309/NRControls/blob/master/Example/sample.png'
+s.screenshots     = 'https://cdn.rawgit.com/naveenrana1309/NRControls/master/Example/sample.png'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'naveenrana1309' => 'naveenrana1309@gmail.com' }
 s.source           = { :git => 'https://github.com/naveenrana1309/NRControls.git', :tag => s.version.to_s }
