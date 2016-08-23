@@ -5,7 +5,7 @@
 [![Version](https://img.shields.io/cocoapods/v/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
 [![License](https://img.shields.io/cocoapods/l/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
 [![Platform](https://img.shields.io/cocoapods/p/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
-
+![Alt text](https://github.com/naveenrana1309/NRControls/blob/master/Example/sample.png "Screeshot")
 
 ## Introduction
 
