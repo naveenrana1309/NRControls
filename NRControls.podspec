@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'NRControls'
-s.version          = '1.0.1'
+s.version          = '1.1.0'
 s.summary          = 'This class is used for using a common controls like alert, action sheet and imagepicker controller with proper completion Handlers.'
 
 # This description is used to generate tags and improve search results.
@@ -44,7 +44,5 @@ s.source_files = 'NRControls/Classes/**/*'
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'
-s.dependency 'Alamofire', '~> 3.3'
-s.dependency 'ReachabilitySwift', '~> 2.3'
 
 end

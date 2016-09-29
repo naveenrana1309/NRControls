@@ -8,27 +8,47 @@
 
 import Foundation
 import MessageUI
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 /// This completionhandler use for call back image picker controller delegates.
-public typealias ImagePickerControllerCompletionHandler = (controller: UIImagePickerController, info: Dictionary<String,AnyObject>) -> Void
+public typealias ImagePickerControllerCompletionHandler = (_ controller: UIImagePickerController, _ info: Dictionary<String,AnyObject>) -> Void
 
 /// This completionhandler use for call back mail controller delegates.
-public typealias MailComposerCompletionHandler = (result:MFMailComposeResult ,error: NSError?) -> Void
+public typealias MailComposerCompletionHandler = (_ result:MFMailComposeResult ,_ error: NSError?) -> Void
 
 /// This completionhandler use for call back alert(Alert) controller delegates.
-public typealias AlertControllerCompletionHandler = (alertController: UIAlertController, index: Int) -> Void
+public typealias AlertControllerCompletionHandler = (_ alertController: UIAlertController, _ index: Int) -> Void
 
 /// This completionhandler use for call back alert(ActionSheet) controller delegates.
-public typealias AlertTextFieldControllerCompletionHandler = (alertController: UIAlertController, index: Int, text: String) -> Void
+public typealias AlertTextFieldControllerCompletionHandler = (_ alertController: UIAlertController, _ index: Int, _ text: String) -> Void
 
 /// This completionhandler use for call back of selected image using image picker controller delegates.
-public typealias CompletionImagePickerController = (selectedImage: UIImage?) -> Void
+public typealias CompletionImagePickerController = (_ selectedImage: UIImage?) -> Void
 
 
 /// This class is used for using a common controls like alert, action sheet and imagepicker controller with proper completion Handlers.
 
-public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate{
+open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeViewControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate{
     
     /// This completionhandler use for call back image picker controller delegates.
     var imagePickerControllerHandler: ImagePickerControllerCompletionHandler?
@@ -37,7 +57,7 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
     var mailComposerCompletionHandler: MailComposerCompletionHandler?
 
     ///Shared instance
-    public static let sharedInstance = NRControls()
+    open static let sharedInstance = NRControls()
 
     /**
      This function is used for taking a picture from iphone camera or camera roll.
@@ -48,13 +68,13 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
  */
     //MARK: UIImagePickerController
 
-    public func takeOrChoosePhoto(viewController: UIViewController, completionHandler: CompletionImagePickerController) {
-        let actionSheetController: UIAlertController = UIAlertController(title: "", message: "Choose photo", preferredStyle: .ActionSheet)
+    open func takeOrChoosePhoto(_ viewController: UIViewController, completionHandler: @escaping CompletionImagePickerController) {
+        let actionSheetController: UIAlertController = UIAlertController(title: "", message: "Choose photo", preferredStyle: .actionSheet)
         
         //Create and add the Cancel action
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             //Just dismiss the action sheet
-            completionHandler(selectedImage: nil)
+            completionHandler(nil)
             
         }
         actionSheetController.addAction(cancelAction)
@@ -63,28 +83,28 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
         //Create and add first option action
         
         //Create and add a second option action
-        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .Default) { action -> Void in
+        let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .default) { action -> Void in
             
-            self.openImagePickerController(.Camera, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
+            self.openImagePickerController(.camera, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
                 let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-                completionHandler(selectedImage: image)
+                completionHandler(image)
             }
         }
         
         actionSheetController.addAction(takePictureAction)
         
         //Create and add a second option action
-        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose from library", style: .Default) { action -> Void in
+        let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose from library", style: .default) { action -> Void in
             
-            self.openImagePickerController(.PhotoLibrary, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
+            self.openImagePickerController(.photoLibrary, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
                 let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-                completionHandler(selectedImage: image)
+                completionHandler(image)
             }
         }
         actionSheetController.addAction(choosePictureAction)
         
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
             // In this case the device is an iPad.
             
            
@@ -94,7 +114,7 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
             }
             
         }
-        viewController.presentViewController(actionSheetController, animated: true, completion: nil)
+        viewController.present(actionSheetController, animated: true, completion: nil)
     }
 
     /**
@@ -107,7 +127,7 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
 
      */
 
-    public func openImagePickerController(sourceType: UIImagePickerControllerSourceType, isVideo: Bool = false, inViewController:UIViewController, completionHandler: ImagePickerControllerCompletionHandler)-> Void {
+    open func openImagePickerController(_ sourceType: UIImagePickerControllerSourceType, isVideo: Bool = false, inViewController:UIViewController, completionHandler: @escaping ImagePickerControllerCompletionHandler)-> Void {
 
         self.imagePickerControllerHandler = completionHandler
     
@@ -124,7 +144,7 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
             print("this source type not supported in this device")
         }
         
-        if (UI_USER_INTERFACE_IDIOM() == .Pad) { //iPad support
+        if (UI_USER_INTERFACE_IDIOM() == .pad) { //iPad support
             // In this case the device is an iPad.
             
             if let popoverController = controller.popoverPresentationController {
@@ -133,21 +153,21 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
             }
             
         }
-        inViewController.presentViewController(controller, animated: true, completion: nil)
+        inViewController.present(controller, animated: true, completion: nil)
 
     }
     
     //MARK: UIImagePickerController Delegates
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    open func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         print("didFinishPickingMediaWithInfo")
         
-        self.imagePickerControllerHandler!(controller: picker, info: info)
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        self.imagePickerControllerHandler!(picker, info as Dictionary<String, AnyObject>)
+        picker.dismiss(animated: true, completion: nil)
         
     }
     
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    open func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
     /**
@@ -163,7 +183,11 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
      */
 
     //MARK: MFMailComposeViewController
-    public func openMailComposerInViewController(recipientsEmailIds:[String], viewcontroller: UIViewController, subject: String = "", message: String = "" ,attachment: NSData? = nil,completionHandler: MailComposerCompletionHandler){
+    open func openMailComposerInViewController(_ recipientsEmailIds:[String], viewcontroller: UIViewController, subject: String = "", message: String = "" ,attachment: Data? = nil,completionHandler: @escaping MailComposerCompletionHandler){
+        if !MFMailComposeViewController.canSendMail() {
+           print("No mail configured. please configure your mail first")
+            return()
+        }
         self.mailComposerCompletionHandler = completionHandler
         let mailComposerViewController = MFMailComposeViewController()
         mailComposerViewController.mailComposeDelegate = self
@@ -171,21 +195,21 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
         mailComposerViewController.setMessageBody(message, isHTML: true)
         mailComposerViewController.setToRecipients(recipientsEmailIds)
         if let _ = attachment {
-            if (attachment!.length>0) 
+            if (attachment!.count>0) 
             {
                 mailComposerViewController.addAttachmentData(attachment!, mimeType: "image/jpeg", fileName: "attachment.jpeg")
             }
 
         }
-        viewcontroller.presentViewController(mailComposerViewController, animated: true, completion:nil)
+        viewcontroller.present(mailComposerViewController, animated: true, completion:nil)
     }
     
     //MARK: MFMailComposeViewController Delegates
 
-    public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion:nil)
+    open func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion:nil)
         if self.mailComposerCompletionHandler != nil {
-            self.mailComposerCompletionHandler!(result: result, error: error)
+            self.mailComposerCompletionHandler!(result, error as NSError?)
 
         }
     }
@@ -204,21 +228,21 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
      */
 
     
-    public func openAlertViewFromViewController(viewController: UIViewController, title: String = "", message: String = "", buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
+    open func openAlertViewFromViewController(_ viewController: UIViewController, title: String = "", message: String = "", buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         for element in buttonsTitlesArray {
-            let action:UIAlertAction = UIAlertAction(title: element, style: .Default, handler: { (action) -> Void in
+            let action:UIAlertAction = UIAlertAction(title: element, style: .default, handler: { (action) -> Void in
                 if let _ = completionHandler {
-                    completionHandler!(alertController: alertController, index: buttonsTitlesArray.indexOf(element)!)
+                    completionHandler!(alertController, buttonsTitlesArray.index(of: element)!)
                 }
                 
             })
             alertController.addAction(action)
         }
         
-        viewController.presentViewController(alertController, animated: true, completion: nil)
+        viewController.present(alertController, animated: true, completion: nil)
       
     }
     
@@ -233,21 +257,21 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
      
      */
 
-   public func openActionSheetFromViewController(viewController: UIViewController, title: String, message: String, buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
+   open func openActionSheetFromViewController(_ viewController: UIViewController, title: String, message: String, buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         for element in buttonsTitlesArray {
-            let action:UIAlertAction = UIAlertAction(title: element, style: .Default, handler: { (action) -> Void in
+            let action:UIAlertAction = UIAlertAction(title: element, style: .default, handler: { (action) -> Void in
                 if let _ = completionHandler {
-                    completionHandler!(alertController: alertController, index: buttonsTitlesArray.indexOf(element)!)
+                    completionHandler!(alertController, buttonsTitlesArray.index(of: element)!)
                 }
                 
             })
             alertController.addAction(action)
         }
         
-        viewController.presentViewController(alertController, animated: true, completion: nil)
+        viewController.present(alertController, animated: true, completion: nil)
     }
 
     /**
@@ -264,15 +288,15 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
      
      */
 
-    public func openAlertViewWithTextFieldFromViewController(viewController: UIViewController, title: String = "", message: String = "", placeHolder: String = "", isSecure: Bool = false, buttonsTitlesArray: [String], isNumberKeyboard: Bool = false, completionHandler: AlertTextFieldControllerCompletionHandler?){
+    open func openAlertViewWithTextFieldFromViewController(_ viewController: UIViewController, title: String = "", message: String = "", placeHolder: String = "", isSecure: Bool = false, buttonsTitlesArray: [String], isNumberKeyboard: Bool = false, completionHandler: AlertTextFieldControllerCompletionHandler?){
         
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         for element in buttonsTitlesArray {
-            let action: UIAlertAction = UIAlertAction(title: element, style: .Default, handler: { (action) -> Void in
+            let action: UIAlertAction = UIAlertAction(title: element, style: .default, handler: { (action) -> Void in
                 if let _ = completionHandler {
-                    if let _ = alertController.textFields where alertController.textFields?.count > 0 , let text = alertController.textFields?.first?.text {
-                        completionHandler!(alertController: alertController, index: buttonsTitlesArray.indexOf(element)!, text: text)
+                    if let _ = alertController.textFields , alertController.textFields?.count > 0 , let text = alertController.textFields?.first?.text {
+                        completionHandler!(alertController, buttonsTitlesArray.index(of: element)!, text)
 
                     }
                 }
@@ -281,19 +305,19 @@ public class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeV
             alertController.addAction(action)
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField : UITextField!) -> Void in
+        alertController.addTextField { (textField : UITextField!) -> Void in
           
-            textField.secureTextEntry = isSecure
+            textField.isSecureTextEntry = isSecure
             textField.placeholder =  placeHolder
             if isNumberKeyboard {
-                textField.keyboardType = .NumberPad
+                textField.keyboardType = .numberPad
             }
             else {
-                textField.keyboardType = .EmailAddress
+                textField.keyboardType = .emailAddress
 
             }
         }
-        viewController.presentViewController(alertController, animated: false, completion: nil)
+        viewController.present(alertController, animated: false, completion: nil)
     }
     
     

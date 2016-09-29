@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,57 +19,62 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-nk-OAo">
-                                <rect key="frame" x="43" y="180" width="289" height="36"/>
-                                <color key="backgroundColor" red="0.25214024116400346" green="0.27742007149952352" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <frame key="frameInset" minX="43" minY="180" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25214024116400346" green="0.27742007149952352" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="ActionSheet with completion handler"/>
                                 <connections>
-                                    <action selector="actionSheetViewButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bk1-Re-q5U"/>
+                                    <action selector="actionSheetViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Bi-Bn-dUs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dps-E9-Od9">
-                                <rect key="frame" x="43" y="257" width="289" height="36"/>
-                                <color key="backgroundColor" red="0.5093529912993221" green="0.81643295502626267" blue="0.38526062128606264" alpha="1" colorSpace="calibratedRGB"/>
+                                <frame key="frameInset" minX="43" minY="257" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.5093529912993221" green="0.81643295502626267" blue="0.38526062128606264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Mail Composer with completion handler"/>
                                 <connections>
-                                    <action selector="mailComposerButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="A4Z-4t-YHC"/>
+                                    <action selector="mailComposerButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rbn-Tk-l3R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glS-ri-dvH">
-                                <rect key="frame" x="43" y="342" width="289" height="36"/>
-                                <color key="backgroundColor" red="0.81643295502626267" green="0.36531445703064735" blue="0.76258673801494126" alpha="1" colorSpace="calibratedRGB"/>
+                                <frame key="frameInset" minX="43" minY="342" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.81643295502626267" green="0.36531445703064735" blue="0.76258673801494126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="AlertView with textfiield "/>
                                 <connections>
-                                    <action selector="alertViewWithTextFieldButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="IBH-On-vxj"/>
+                                    <action selector="alertViewWithTextFieldButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OtT-P8-BvU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7D-SM-e3P">
-                                <rect key="frame" x="43" y="36" width="289" height="36"/>
-                                <color key="backgroundColor" red="0.98465119950000002" green="0.59180956479371072" blue="0.30384080039039435" alpha="1" colorSpace="calibratedRGB"/>
+                                <frame key="frameInset" minX="43" minY="36" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98465119950000002" green="0.59180956479371072" blue="0.30384080039039435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="TakeChoose photo with completion handler"/>
                                 <connections>
-                                    <action selector="takeChoosePhoto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="dv5-Is-OpD"/>
+                                    <action selector="takeChoosePhotoWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DxM-ja-5LO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8A-Hk-cVu">
-                                <rect key="frame" x="67" y="401" width="240" height="128"/>
+                                <frame key="frameInset" minX="67" minY="401" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdk-J1-MXc">
-                                <rect key="frame" x="43" y="99" width="289" height="36"/>
-                                <color key="backgroundColor" red="0.9846511994949495" green="0.23648473768029424" blue="0.36498041304829332" alpha="1" colorSpace="calibratedRGB"/>
+                                <frame key="frameInset" minX="43" minY="99" width="289" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.9846511994949495" green="0.23648473768029424" blue="0.36498041304829332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Alert View with completion handler"/>
                                 <connections>
-                                    <action selector="alertViewButtonClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dW-fi-Yox"/>
+                                    <action selector="alertViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sMI-cx-rP9"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imageView" destination="B8A-Hk-cVu" id="U4P-dM-Jc6"/>
                     </connections>

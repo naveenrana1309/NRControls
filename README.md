@@ -21,7 +21,7 @@ NRControls: This class is used for using a common controls like alert, action sh
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
-Xcode 7+ , Swift 2 , iOS 9 and above
+Xcode 8+ , Swift 3 , iOS 9 and above
 
 ## Installation
 
@@ -89,7 +89,8 @@ print(text)
 
 
 ```
-
+#Xcode 7 support
+if you want to use this in Xcode 7 and swift 2.3 you have to use pod 'NRControls', '~> 1.0'.
 
 ## Contributing
 
@@ -103,7 +104,7 @@ Contributions are always welcome! (:
 
 ## Compatibility
 
-Xcode 7+ , Swift 2 , iOS 9 and above
+Xcode 8+ , Swift 3 , iOS 9 and above
 
 ## Author
 
