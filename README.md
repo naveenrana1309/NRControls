@@ -8,7 +8,7 @@
 ![ScreenShot](https://cdn.rawgit.com/naveenrana1309/NRControls/master/Example/samplewithdocument.png "Screeshot")
 
 
-##Update:
+## Update
 1) Xcode 9+ support now
 2) Add browse file feature - Document Picker
 
