@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'NRControls'
-s.version          = '1.1.1'
+s.version          = '2.0.0'
 s.summary          = 'This class is used for using a common controls like alert, action sheet and imagepicker controller with proper completion Handlers.'
 
 # This description is used to generate tags and improve search results.
@@ -24,6 +24,8 @@ NRControls: This class is used for using a common controls like alert, action sh
 * Action Sheet
 * AlertView with textfield (eg. you can use this in case of forgot password and in many more cases.
 * Take or choose photo which use above methods and gives you the selected image within same line of code with the help of completion handler.
+* Document Picker - You can pick any document local or from cloud.
+
 DESC
 
 s.homepage         = 'https://github.com/naveenrana1309/NRControls'
@@ -34,7 +36,7 @@ s.source           = { :git => 'https://github.com/naveenrana1309/NRControls.git
 
 #s.social_media_url = 'https://www.facebook.com/iOSByHeart/'
 
-s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '10.0'
 
 s.source_files = 'NRControls/Classes/**/*'
 

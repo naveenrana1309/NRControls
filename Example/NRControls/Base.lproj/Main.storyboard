@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,62 +21,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-nk-OAo">
-                                <frame key="frameInset" minX="43" minY="180" width="289" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25214024116400346" green="0.27742007149952352" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="ActionSheet with completion handler"/>
-                                <connections>
-                                    <action selector="actionSheetViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Bi-Bn-dUs"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dps-E9-Od9">
-                                <frame key="frameInset" minX="43" minY="257" width="289" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.5093529912993221" green="0.81643295502626267" blue="0.38526062128606264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Mail Composer with completion handler"/>
-                                <connections>
-                                    <action selector="mailComposerButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rbn-Tk-l3R"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glS-ri-dvH">
-                                <frame key="frameInset" minX="43" minY="342" width="289" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.81643295502626267" green="0.36531445703064735" blue="0.76258673801494126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="AlertView with textfiield "/>
-                                <connections>
-                                    <action selector="alertViewWithTextFieldButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OtT-P8-BvU"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7D-SM-e3P">
-                                <frame key="frameInset" minX="43" minY="36" width="289" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98465119950000002" green="0.59180956479371072" blue="0.30384080039039435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="TakeChoose photo with completion handler"/>
-                                <connections>
-                                    <action selector="takeChoosePhotoWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DxM-ja-5LO"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8A-Hk-cVu">
-                                <frame key="frameInset" minX="67" minY="401" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdk-J1-MXc">
-                                <frame key="frameInset" minX="43" minY="99" width="289" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.9846511994949495" green="0.23648473768029424" blue="0.36498041304829332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Alert View with completion handler"/>
-                                <connections>
-                                    <action selector="alertViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sMI-cx-rP9"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g58-oz-PGQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8i-0Y-r7e">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                        <color key="backgroundColor" red="0.31165011245821655" green="0.67227762971235117" blue="0.98465119950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Document picker with completion handler"/>
+                                        <connections>
+                                            <action selector="documentPickerButtonPressedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QI1-np-Ycn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7D-SM-e3P">
+                                        <rect key="frame" x="0.0" y="95.5" width="375" height="75"/>
+                                        <color key="backgroundColor" red="0.98465119950000002" green="0.59180956479371072" blue="0.30384080039039435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="TakeChoose photo with completion handler"/>
+                                        <connections>
+                                            <action selector="takeChoosePhotoWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DxM-ja-5LO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdk-J1-MXc">
+                                        <rect key="frame" x="0.0" y="190.5" width="375" height="75.5"/>
+                                        <color key="backgroundColor" red="0.9846511994949495" green="0.23648473768029424" blue="0.36498041304829332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Alert View with completion handler"/>
+                                        <connections>
+                                            <action selector="alertViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sMI-cx-rP9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAT-nk-OAo">
+                                        <rect key="frame" x="0.0" y="286" width="375" height="75"/>
+                                        <color key="backgroundColor" red="0.25214024116400346" green="0.27742007149952352" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="ActionSheet with completion handler"/>
+                                        <connections>
+                                            <action selector="actionSheetViewButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Bi-Bn-dUs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dps-E9-Od9">
+                                        <rect key="frame" x="0.0" y="381" width="375" height="75.5"/>
+                                        <color key="backgroundColor" red="0.5093529912993221" green="0.81643295502626267" blue="0.38526062128606264" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Mail Composer with completion handler"/>
+                                        <connections>
+                                            <action selector="mailComposerButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rbn-Tk-l3R"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glS-ri-dvH">
+                                        <rect key="frame" x="0.0" y="476.5" width="375" height="75"/>
+                                        <color key="backgroundColor" red="0.81643295502626267" green="0.36531445703064735" blue="0.76258673801494126" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="AlertView with textfiield "/>
+                                        <connections>
+                                            <action selector="alertViewWithTextFieldButtonClickedWithSender:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OtT-P8-BvU"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B8A-Hk-cVu">
+                                        <rect key="frame" x="0.0" y="571.5" width="375" height="75.5"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="g58-oz-PGQ" secondAttribute="trailing" id="PX1-da-J4p"/>
+                            <constraint firstItem="g58-oz-PGQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PrT-cv-7QF"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="g58-oz-PGQ" secondAttribute="bottom" id="kG7-iN-Vch"/>
+                            <constraint firstItem="g58-oz-PGQ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="suT-kZ-Oxb"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="B8A-Hk-cVu" id="U4P-dM-Jc6"/>

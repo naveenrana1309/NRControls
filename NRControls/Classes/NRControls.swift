@@ -45,6 +45,9 @@ public typealias AlertTextFieldControllerCompletionHandler = (_ alertController:
 /// This completionhandler use for call back of selected image using image picker controller delegates.
 public typealias CompletionImagePickerController = (_ selectedImage: UIImage?) -> Void
 
+/// This completionhandler use for call back of selected url using DocumentPicker controller delegates.
+public typealias DocumentPickerCompletionHandler = (_ selectedDocuments: [URL]?) -> Void
+
 
 /// This class is used for using a common controls like alert, action sheet and imagepicker controller with proper completion Handlers.
 
@@ -56,6 +59,9 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
     /// This completionhandler use for call back mail controller delegates.
     var mailComposerCompletionHandler: MailComposerCompletionHandler?
 
+    /// This completionhandler use for call back mail controller delegates.
+    var documentPickerCompletionHandler: DocumentPickerCompletionHandler?
+    
     ///Shared instance
     open static let sharedInstance = NRControls()
 

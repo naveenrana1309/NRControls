@@ -54,5 +54,12 @@ class ViewController: UIViewController {
             print(text)
         }
     }
+    
+    @IBAction func documentPickerButtonPressed(sender: UIButton) {
+        NRControls.sharedInstance.openDocumentPicker(self) { (urls) in
+            print(urls ?? "Cancelled")
+        }
+    }
+
 }
 

@@ -5,7 +5,13 @@
 [![Version](https://img.shields.io/cocoapods/v/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
 [![License](https://img.shields.io/cocoapods/l/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
 [![Platform](https://img.shields.io/cocoapods/p/NRControls.svg?style=flat)](http://cocoapods.org/pods/NRControls)
-![ScreenShot](https://cdn.rawgit.com/naveenrana1309/NRControls/master/Example/sample.png "Screeshot")
+![ScreenShot](https://cdn.rawgit.com/naveenrana1309/NRControls/master/Example/samplewithdocument.png "Screeshot")
+
+
+##Update:
+1) Xcode 9+ support now
+2) Add browse file feature - Document Picker
+
 
 ## Introduction
 
@@ -15,13 +21,14 @@ NRControls: This class is used for using a common controls like alert, action sh
 3) Action Sheet
 4) AlertView with textfield (eg. you can use this in case of forgot password and in many more cases.)
 5) Take or choose photo which use above methods and gives you the selected image within same line of code with the help of completion handler.
+6) Document Picker - You can pick any document from local or cloud from your app.
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
-Xcode 8+ , Swift 3 , iOS 9 and above
+Xcode 9+ , Swift 4 , iOS 9 and above
 
 ## Installation
 
@@ -33,6 +40,17 @@ pod "NRControls"
 ```
 
 ## Usage
+
+# Document Picker
+```
+@IBAction func documentPickerButtonPressed(sender: UIButton) {
+NRControls.sharedInstance.openDocumentPicker(self) { (urls) in
+print(urls ?? "Cancelled")
+}
+}
+
+```
+
 # Take or Choose photo
 
 ```
@@ -87,10 +105,7 @@ print(text)
 
 }
 
-
 ```
-#Xcode 7 support
-if you want to use this in Xcode 7 and swift 2.3 you have to use pod 'NRControls', '~> 1.0'.
 
 ## Contributing
 
@@ -104,7 +119,7 @@ Contributions are always welcome! (:
 
 ## Compatibility
 
-Xcode 8+ , Swift 3 , iOS 9 and above
+Xcode 9+ , Swift 4 , iOS 10 and above
 
 ## Author
 
@@ -113,7 +128,7 @@ Naveen Rana. [See Profile](https://www.linkedin.com/in/naveen-rana-9a371a40)
 Email: 
 naveenrana1309@gmail.com. 
 
-Check out [Facebook Page](https://www.facebook.com/iOSByHeart/) for detail.
+Check out [Facebook Profile](https://www.facebook.com/naveen.rana.146) for detail.
 
 ## License
 
