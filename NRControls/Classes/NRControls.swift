@@ -1,6 +1,6 @@
 //
 //  NRControls.swift
-//  
+//
 //
 //  Created by Naveen Rana on 21/08/16.
 //  Developed by Naveen Rana. All rights reserved.
@@ -9,29 +9,29 @@
 import Foundation
 import MessageUI
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 
 
 /// This completionhandler use for call back image picker controller delegates.
-public typealias ImagePickerControllerCompletionHandler = (_ controller: UIImagePickerController, _ info: Dictionary<String,AnyObject>) -> Void
+public typealias ImagePickerControllerCompletionHandler = (_ controller: UIImagePickerController, _ info: [UIImagePickerController.InfoKey: Any]) -> Void
 
 /// This completionhandler use for call back mail controller delegates.
 public typealias MailComposerCompletionHandler = (_ result:MFMailComposeResult ,_ error: NSError?) -> Void
@@ -58,22 +58,22 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
     
     /// This completionhandler use for call back mail controller delegates.
     var mailComposerCompletionHandler: MailComposerCompletionHandler?
-
+    
     /// This completionhandler use for call back mail controller delegates.
     var documentPickerCompletionHandler: DocumentPickerCompletionHandler?
     
     ///Shared instance
-    open static let sharedInstance = NRControls()
-
+    public static let sharedInstance = NRControls()
+    
     /**
      This function is used for taking a picture from iphone camera or camera roll.
      - Parameters:
-        - viewController: Source viewcontroller from which you want to present this popup.
-        - completionHandler: This completion handler will give you image or nil.
+     - viewController: Source viewcontroller from which you want to present this popup.
+     - completionHandler: This completion handler will give you image or nil.
      
- */
+     */
     //MARK: UIImagePickerController
-
+    
     open func takeOrChoosePhoto(_ viewController: UIViewController, completionHandler: @escaping CompletionImagePickerController) {
         let actionSheetController: UIAlertController = UIAlertController(title: "", message: "Choose photo", preferredStyle: .actionSheet)
         
@@ -92,7 +92,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         let takePictureAction: UIAlertAction = UIAlertAction(title: "Take Picture", style: .default) { action -> Void in
             
             self.openImagePickerController(.camera, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
-                let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+                let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
                 completionHandler(image)
             }
         }
@@ -103,7 +103,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         let choosePictureAction: UIAlertAction = UIAlertAction(title: "Choose from library", style: .default) { action -> Void in
             
             self.openImagePickerController(.photoLibrary, isVideo: false, inViewController: viewController) { (controller, info) -> Void in
-                let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+                let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
                 completionHandler(image)
             }
         }
@@ -113,7 +113,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
             // In this case the device is an iPad.
             
-           
+            
             if let popoverController = actionSheetController.popoverPresentationController {
                 popoverController.sourceView = viewController.view
                 popoverController.sourceRect = viewController.view.bounds
@@ -122,21 +122,21 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         }
         viewController.present(actionSheetController, animated: true, completion: nil)
     }
-
+    
     /**
      This function is used open image picker controller.
      - Parameters:
-        - sourceType:  PhotoLibrary, Camera, SavedPhotosAlbum
-        - inViewController: Source viewcontroller from which you want to present this imagecontroller.
-        - isVideo: if you want to capture video then set it to yes, by default value is false.
-        - completionHandler: Gives you the call back with Imagepickercontroller and information about image.
-
+     - sourceType:  PhotoLibrary, Camera, SavedPhotosAlbum
+     - inViewController: Source viewcontroller from which you want to present this imagecontroller.
+     - isVideo: if you want to capture video then set it to yes, by default value is false.
+     - completionHandler: Gives you the call back with Imagepickercontroller and information about image.
+     
      */
-
-    open func openImagePickerController(_ sourceType: UIImagePickerControllerSourceType, isVideo: Bool = false, inViewController:UIViewController, completionHandler: @escaping ImagePickerControllerCompletionHandler)-> Void {
-
-        self.imagePickerControllerHandler = completionHandler
     
+    open func openImagePickerController(_ sourceType: UIImagePickerController.SourceType, isVideo: Bool = false, inViewController:UIViewController, completionHandler: @escaping ImagePickerControllerCompletionHandler)-> Void {
+        
+        self.imagePickerControllerHandler = completionHandler
+        
         let controller = UIImagePickerController()
         controller.allowsEditing = false
         controller.delegate = self;
@@ -160,14 +160,15 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
             
         }
         inViewController.present(controller, animated: true, completion: nil)
-
+        
     }
     
     //MARK: UIImagePickerController Delegates
-    open func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("didFinishPickingMediaWithInfo")
         
-        self.imagePickerControllerHandler!(picker, info as Dictionary<String, AnyObject>)
+        self.imagePickerControllerHandler!(picker, info)
         picker.dismiss(animated: true, completion: nil)
         
     }
@@ -179,19 +180,19 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
     /**
      This function is used for open Mail Composer.
      - Parameters:
-        - recipientsEmailIds:  email ids of recipents for you want to send emails.
-        - viewcontroller: Source viewcontroller from which you want to present this mail composer.
-        - subject: Subject of mail.
-        - message: body of mail.
-        - attachment: optional this is nsdata of video/photo or any other document.
-        - completionHandler: Gives you the call back with result and error if any.
+     - recipientsEmailIds:  email ids of recipents for you want to send emails.
+     - viewcontroller: Source viewcontroller from which you want to present this mail composer.
+     - subject: Subject of mail.
+     - message: body of mail.
+     - attachment: optional this is nsdata of video/photo or any other document.
+     - completionHandler: Gives you the call back with result and error if any.
      
      */
-
+    
     //MARK: MFMailComposeViewController
     open func openMailComposerInViewController(_ recipientsEmailIds:[String], viewcontroller: UIViewController, subject: String = "", message: String = "" ,attachment: Data? = nil,completionHandler: @escaping MailComposerCompletionHandler){
         if !MFMailComposeViewController.canSendMail() {
-           print("No mail configured. please configure your mail first")
+            print("No mail configured. please configure your mail first")
             return()
         }
         self.mailComposerCompletionHandler = completionHandler
@@ -201,27 +202,27 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         mailComposerViewController.setMessageBody(message, isHTML: true)
         mailComposerViewController.setToRecipients(recipientsEmailIds)
         if let _ = attachment {
-            if (attachment!.count>0) 
+            if (attachment!.count>0)
             {
                 mailComposerViewController.addAttachmentData(attachment!, mimeType: "image/jpeg", fileName: "attachment.jpeg")
             }
-
+            
         }
         viewcontroller.present(mailComposerViewController, animated: true, completion:nil)
     }
     
     //MARK: MFMailComposeViewController Delegates
-
+    
     open func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion:nil)
         if self.mailComposerCompletionHandler != nil {
             self.mailComposerCompletionHandler!(result, error as NSError?)
-
+            
         }
     }
     
     //MARK: AlertController
-
+    
     /**
      This function is used for open Alert View.
      - Parameters:
@@ -232,7 +233,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
      - completionHandler: Gives you the call back with alertController and index of selected button .
      
      */
-
+    
     
     open func openAlertViewFromViewController(_ viewController: UIViewController, title: String = "", message: String = "", buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
         
@@ -249,7 +250,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         }
         
         viewController.present(alertController, animated: true, completion: nil)
-      
+        
     }
     
     /**
@@ -262,8 +263,8 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
      - completionHandler: Gives you the call back with alertController and index of selected button .
      
      */
-
-   open func openActionSheetFromViewController(_ viewController: UIViewController, title: String, message: String, buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
+    
+    open func openActionSheetFromViewController(_ viewController: UIViewController, title: String, message: String, buttonsTitlesArray: [String], completionHandler: AlertControllerCompletionHandler?){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -279,21 +280,21 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         
         viewController.present(alertController, animated: true, completion: nil)
     }
-
+    
     /**
      This function is used for openAlertView with textfield.
      - Parameters:
-        - viewcontroller: source viewcontroller from which you want to present this mail composer.
-        - title: title of the alert.
-        - message: message of the alert.
-        - placeHolder: placeholder of the textfield.
-        - isSecure: true if you want texfield secure, by default is false.
-        - isNumberKeyboard: true if keyboard is of type numberpad, .
-        - buttonsTitlesArray: array of button titles eg: ["Cancel","Ok"].
-        - completionHandler: Gives you the call back with alertController,index and text of textfield.
+     - viewcontroller: source viewcontroller from which you want to present this mail composer.
+     - title: title of the alert.
+     - message: message of the alert.
+     - placeHolder: placeholder of the textfield.
+     - isSecure: true if you want texfield secure, by default is false.
+     - isNumberKeyboard: true if keyboard is of type numberpad, .
+     - buttonsTitlesArray: array of button titles eg: ["Cancel","Ok"].
+     - completionHandler: Gives you the call back with alertController,index and text of textfield.
      
      */
-
+    
     open func openAlertViewWithTextFieldFromViewController(_ viewController: UIViewController, title: String = "", message: String = "", placeHolder: String = "", isSecure: Bool = false, buttonsTitlesArray: [String], isNumberKeyboard: Bool = false, completionHandler: AlertTextFieldControllerCompletionHandler?){
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -303,7 +304,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
                 if let _ = completionHandler {
                     if let _ = alertController.textFields , alertController.textFields?.count > 0 , let text = alertController.textFields?.first?.text {
                         completionHandler!(alertController, buttonsTitlesArray.index(of: element)!, text)
-
+                        
                     }
                 }
                 
@@ -312,7 +313,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
         }
         
         alertController.addTextField { (textField : UITextField!) -> Void in
-          
+            
             textField.isSecureTextEntry = isSecure
             textField.placeholder =  placeHolder
             if isNumberKeyboard {
@@ -320,7 +321,7 @@ open class NRControls: NSObject,UIImagePickerControllerDelegate,MFMailComposeVie
             }
             else {
                 textField.keyboardType = .emailAddress
-
+                
             }
         }
         viewController.present(alertController, animated: false, completion: nil)
